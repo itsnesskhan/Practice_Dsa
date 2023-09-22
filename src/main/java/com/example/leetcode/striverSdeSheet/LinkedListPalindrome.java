@@ -43,14 +43,14 @@ public class LinkedListPalindrome {
                 return false;
             }
 
-            last = last.next;
+             last = last.next;
             cur = cur.next;
         }
         return true;
     }
 
     public static void main(String[] args) {
-        // Test the function with a sample linked list
+      
         LinkedListNode<Integer> head = new LinkedListNode<>(1);
         head.next = new LinkedListNode<>(2);
         head.next.next = new LinkedListNode<>(3);

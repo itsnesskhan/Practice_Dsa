@@ -1,6 +1,8 @@
 package com.example.concepts;
 
 import java.util.HashMap;
+import java.util.Map;
+import java.util.Set;
 import java.util.concurrent.ConcurrentHashMap;
 
 public class HashMapVsConCurrentHashMap {
@@ -12,6 +14,11 @@ public class HashMapVsConCurrentHashMap {
         h.put(101,"Michale");   
         h.put(102,"Ani");   
         h.put(null,"Sofia");   
-        System.out.println(h);   
+        
+        Set<Map.Entry<Integer, String>> map = h.entrySet();
+        for (Map.Entry<Integer, String> entry : map) {
+			System.out.println("key "+entry.getKey() +" value "+entry.getValue());
+		}
+        
     }   
 }

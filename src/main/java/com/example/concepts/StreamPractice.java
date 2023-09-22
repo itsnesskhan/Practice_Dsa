@@ -45,5 +45,10 @@ public class StreamPractice {
 		System.out.println("AVERAGE SALARY OF AN EMPLOYEE");
 		double averageSal = emp.stream().mapToDouble(employee->employee.getSalary()).average().getAsDouble();
 		System.out.println(averageSal);
+		
+		System.out.println("Converting list of number into string");
+		List<String> collect = list.stream().map(item->String.valueOf(item)).collect(Collectors.toList());
+		System.out.println(collect);
+		
 	}
 }

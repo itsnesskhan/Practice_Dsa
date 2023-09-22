@@ -46,7 +46,7 @@ class MovieBookApp extends Thread{
 
 public class TicketBooking{
 	public static void main(String[] args) {
-		TicketBookingClass ticketBookingClass = new TicketBookingClass(11);
+		TicketBookingClass ticketBookingClass = new TicketBookingClass(10);
 		
 		MovieBookApp nasser = new MovieBookApp("Nasser", 3, ticketBookingClass);
 		MovieBookApp akshay = new MovieBookApp("Akshay", 3, ticketBookingClass);

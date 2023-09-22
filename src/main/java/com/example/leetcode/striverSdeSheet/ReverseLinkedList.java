@@ -1,5 +1,8 @@
 package com.example.leetcode.striverSdeSheet;
 
+import java.util.ArrayList;
+import java.util.LinkedList;
+
 class LinkedListNode<T> 
 {
 	T data;
@@ -104,6 +107,7 @@ public class ReverseLinkedList {
 		
 		System.out.println("middle element :"+findMiddle(head));
 		System.out.println(isPalindrome(head));
+		
 		
 		
 	}

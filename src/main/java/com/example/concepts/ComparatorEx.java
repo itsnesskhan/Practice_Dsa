@@ -69,6 +69,8 @@ public class ComparatorEx {
 		System.out.println("sorting based on salary");
 
 		Collections.sort(list, (a,b)-> a.getSalary()<b.getSalary()?-1: a.getSalary()>b.getSalary()?1:0);
+		
+	
 
 		printList(list);
 		
