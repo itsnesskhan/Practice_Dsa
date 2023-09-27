@@ -8,7 +8,33 @@ import lombok.Setter;
 @Setter
 class Product {
 	int element = 0;
-	private boolean producerChance = false;
+	private boolean producerChance = true;
+	
+	public synchronized void produce() throws InterruptedException {
+		if (!producerChance) {
+			wait();
+		}
+		if (element == 0) {
+			this.setElement(1);
+			System.out.println(Thread.currentThread().getName()+" produced "+element);
+			Thread.sleep(1000);
+			producerChance = false;
+			notify();
+		}
+	}
+	
+	public synchronized void consume() throws InterruptedException {
+		if (producerChance) {
+			wait();
+		}
+		if (element==1) {
+			this.setElement(0);
+			System.out.println(Thread.currentThread().getName()+" consumed "+element);
+			Thread.sleep(1000);
+			this.producerChance = true;
+			notify();
+		}
+	}
 }
 
 @AllArgsConstructor
@@ -16,26 +42,13 @@ class Producer implements Runnable {
 
 	private Product product;
 
-	public void produce() throws InterruptedException {
-		int count=0;
-		if (!product.isProducerChance()) {
-			wait();
-		}
-		if (product.getElement() == 0) {
-			product.setElement(1);
-			count++;
-			System.out.println(Thread.currentThread().getName()+" produced "+count);
-			Thread.sleep(100);
-			product.setProducerChance(true);
-			notify();
-		}
-	}
+	
 
 	@Override
 	public void run() {
 		for (int i = 0; i < 5; i++) {
 			try {
-				produce();
+				product.produce();
 			} catch (InterruptedException e) {
 				e.printStackTrace();
 			}
@@ -51,25 +64,12 @@ class Consumer implements Runnable {
 	private Product product;
 	
 	
-	public void consume() throws InterruptedException {
-		int count=0;
-		if (product.isProducerChance()) {
-			wait();
-		}
-		if (product.getElement()==1) {
-			product.setElement(0);
-			count++;
-			System.out.println(Thread.currentThread().getName()+" consumed "+count);
-			Thread.sleep(100);
-			product.setProducerChance(false);
-			notify();
-		}
-	}
+	
 
 	@Override public void run() {
 		for (int i = 0; i < 5; i++) {
 			try {
-				consume();
+				product.consume();
 			} catch (InterruptedException e) {
 				e.printStackTrace();
 			}
